@@ -46,6 +46,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+	maven { url = "https://s01.oss.sonatype.org/service/local/repo_groups/staging/content" }
     }
 }
 dependencyResolutionManagement {
@@ -63,13 +64,14 @@ include ':app'
 ```gradle
 repositories {
     mavenCentral()
+    maven { url = "https://s01.oss.sonatype.org/service/local/repo_groups/staging/content" }
 }
 ```
 
 아래의 코드를 App Module의 build.gradle 파일에 추가해주세요.
 ```gradle
 dependencies {
-    implementation 'com.tnkfactory:cpp:1.1.0'
+    implementation 'com.tnkfactory:cpp:1.0.9'
 }
 ```
 
@@ -100,6 +102,17 @@ Proguard 를 사용하시는 경우 Proguard 설정 파일에 아래의 내용�
 
 Test Flight 에서는 별도로 계정등록을 하지않아도 간단히 테스트를 진행할 수 있었습니다. 하지만 실제 광고를 받기 위해서는 우선 Tnk Publish Site 에서 Inventory를 등록하여 발급받은 ID 를 AndroidManifest.xml 파일에 추가하셔야합니다.
 아래의 샘플을 참고하시어 실제 ID 를 등록하세요.
+
+```xml
+<application>
+
+	<meta-data android:name="tnk_pub_id" android:value="YOUR-INVENTORY-ID-HERE" />
+
+</application>
+```
+
+Tnk 사이트에서 앱과 placement id를 등록 후 사용하셔야 합니다.
+[Tnk홈페이지](https://tnkfactory.com/) 회원가입 후 담당자에게 연락 바랍니다.
 
 #### Application ID 설정하기
 
