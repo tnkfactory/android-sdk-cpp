@@ -272,7 +272,7 @@ public CashpoppopPlus(Activity activity, CppConfig cppConfig)
 | 파라메터 명칭 | 내용                                                         |
 | ------------- | ------------------------------------------------------------ |
 | Activity      | 현재 Activity 객체                                           |
-| cppConfig         | config 클래스   |
+| cppConfig         | [CppConfig](#cppconfig)클래스   |
 
 
 #### methods
@@ -343,7 +343,9 @@ TnkLayout tnkLayout
 
 보상형 광고의 레이아웃 입니다.  
 
-설정하지 않으면 blude_1 스타일을 기본값으로 설정됩니다.
+설정하지 않으면 blue_1 스타일을 기본값으로 설정됩니다.
+
+[RWD SDK의 디자인 변경하기](https://github.com/tnkfactory/android-sdk-rwd/blob/master/Android_Guide.md#%EB%9D%BC-%EB%94%94%EC%9E%90%EC%9D%B8-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0)를 참고하시기 바랍니다.
 
 
 ##### visiblePopupBtn
@@ -364,6 +366,7 @@ CppAdViewListener listener
 ```
 
 캐시팝팝플러스의 메인화면에서 화면을 닫았을때의 이벤트와 특정 UI상호작용을 처리하기 위한 리스너 입니다.  
+[CppAdViewListener](#cppadviewlistener)를 통해 특정 이벤트의 로깅 등이 필요하실 경우 구현 하시면 됩니다.
 
 ---
 
@@ -428,7 +431,7 @@ abstract void onClickMenu(CppMainViewId id){}
 
 | 파라메터 명칭 | 내용                                                         |
 | ------------- | ------------------------------------------------------------ |
-| id      | CppMainViewId의 값중 한가지가 인자로 전달됩니다.                            |
+| id      | [CppMainViewId](#cppmainviewid)의 값중 한가지가 인자로 전달됩니다.                            |
 
 
 
