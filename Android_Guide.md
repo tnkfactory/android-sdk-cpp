@@ -9,8 +9,30 @@
 
 2. [Main화면 출력하기](#2-메인화면-출력하기)
 
-3. [SDK referance](#3-sdk-referance)
-
+3. [API Referance](#3-api-referance)
+   * [CashpoppopPlus](#cashpoppopplus)  
+     * [Constructors](#constructors)  
+       * [CashpoppopPlus](#cashpoppopplus-1)  
+     * [Method](#method)  
+       * [showAdView](#showadview)  
+   * [CppConfig](#cppconfig)  
+     * [Constructors](#constructors-1)  
+       * [CppConfig](#cppconfig)  
+     * [Fields](#fields)  
+       * [tnkLayout](#tnklayout)  
+       * [visiblePopupBtn](#visiblepopupbtn)  
+       * [listener](#listener)  
+   * [CppConfig.Builder](#cppconfigbuilder)  
+   * [CppAdViewListener](#cppadviewlistener)  
+     * [Constructors](#constructors-2)  
+       * [CppAdViewListener](#cppadviewlistener)  
+     * [Method](#method-1)  
+       * [onClickMenu](#onclickmenu)  
+       * [onCancel](#oncancel)  
+       * [onDismiss](#ondismiss)  
+   * [CppMainViewId](#cppmainviewid)  
+     * [Fields](#fields-2)  
+    
 ## 1. SDK 설정하기
 
 ### 라이브러리 등록
@@ -204,7 +226,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 
 
-## 3. SDK referance
+## 3. API referance
 
 
 ### CashpoppopPlus
@@ -223,25 +245,27 @@ Fragment
    ↳ CashpoppopPlus  
 </pre>
 
-##### Summary
+#### Summary
 
-###### Constructors
+##### Constructors
 
-- public CashpoppopPlus(Activity activity, CppConfig cppConfig)
+- CashpoppopPlus(Activity activity, CppConfig cppConfig)
 
-###### Method
+##### Method
  
 - void showAdView(Activity activity)
 
 
+#### constructors
 
----
-##### public CashpoppopPlus(Activity activity, CppConfig cppConfig)
+##### CashpoppopPlus
 
+```java
+public CashpoppopPlus(Activity activity, CppConfig cppConfig)
+```
 ###### Description
 
-생성자는 화면을 출력하기 위한 Activity와 설정값을 적용하기 위해 CppConfig를 요구합니다.
-ㅇ
+생성자는 화면을 출력하기 위한 Activity와 설정값을 적용하기 위해 CppConfig가 필요합니다.
 
 ###### Parameters
 
@@ -250,33 +274,212 @@ Fragment
 | Activity      | 현재 Activity 객체                                           |
 | cppConfig         | config 클래스   |
 
-###### 적용예시
+
+#### methods
+
+##### showAdView
 
 ```java
-@Override
-
-public void onCreate(Bundle savedInstanceState) {
-
-    ...
-
-    final Button button = (Button)findViewById(R.id.main_ad);
-
-    button.setOnClickListener(new OnClickListener() {
-
-        @Override
-
-        public void onClick(View v) {
-
-            TnkSession.popupAdList(MainActivity.this,"Your title here");
-
-        }
-
-    });
-}
+public void showAdView(Activity activity)
 ```
 
+###### Description
+
+view를 화면에 출력합니다.
+
+###### Parameters
+
+| 파라메터 명칭 | 내용                                                         |
+| ------------- | ------------------------------------------------------------ |
+| Activity      | 현재 Activity객체 getSupportFragmentManager()를 호출하기 위해 필요합니다.|
+
+---
+
+### CppConfig
+
+<pre>
+캐시팝팝 플러스의 설정값을 지정하는 클래스입니다.
+
+kotlin의 경우 디폴트 값을 사용하여 CppConfig()와 같이 설정 가능합니다.
+
+Java를 사용 할 경우 CppConfig.Builder클래스를 이용하여 설정해 주시기 바랍니다.
+</pre>
+  
+kotlin을 사용 할 경우 예제
+  
+```kotlin
+CppConfig(tnkLayout = TemplateLayoutUtils.getBlueStyle_01(),
+            visiblePopupBtn = false,
+            listener = cppListener)
+```
+
+```java
+public class CppConfig 
+```
+
+#### Summary
+
+##### Constructors
+
+- CppConfig(TnkLayout tnkLayout, boolean visiblePopupBtn, CppAdViewListener listener)
+
+##### Fields
+
+TnkLayout tnkLayout
+
+boolean visiblePopupBtn
+
+CppAdViewListener listener
 
 
 
+#### Fields
 
+##### tnkLayout
+
+```java
+TnkLayout tnkLayout
+```
+
+보상형 광고의 레이아웃 입니다.  
+
+설정하지 않으면 blude_1 스타일을 기본값으로 설정됩니다.
+
+
+##### visiblePopupBtn
+
+```java
+boolean visiblePopupBtn
+```
+
+오버레이 버튼을 사용 할 경우 해당 버튼을 보이게 할 것인지 여부입니다.  
+설정창에서 유저가 해당 버튼을 끄도록 하는 기능을 구현 할 때 사용합니다.  
+
+오버레이 버튼을 사용하지 않을 경우 해당 값은 무시됩니다.
+
+##### listener
+
+```java
+CppAdViewListener listener
+```
+
+캐시팝팝플러스의 메인화면에서 화면을 닫았을때의 이벤트와 특정 UI상호작용을 처리하기 위한 리스너 입니다.  
+
+---
+
+### CppConfig.Builder
+
+<pre>
+java를 이용하여 개발 할 경우 CppConfig를 설정하기 위한 Builder입니다.
+</pre>
+
+아래의 예제처럼 사용 가능합니다.
+```java
+CppConfig config = new CppConfig.Builder()
+            .tnkLayout(TemplateLayoutUtils.getBlueTabStyle_01())
+            .listener(adViewListener)
+	    .visiblePopupBtn(true)
+            .build();
+```
+
+---
+
+### CppAdViewListener
+
+캐시팝팝플러스 메인화면의 이벤트 콜백 리스너 입니다.
+
+```java
+public abstract class CppAdViewListener 
+```
+
+#### Summary
+
+##### Constructors
+
+- CppAdViewListener()
+
+##### Method
+ 
+- abstract void onClickMenu(CppMainViewId id)
+- abstract void onCancel()
+- abstract void onDismiss()
+
+#### Constructors
+
+##### CppAdViewListener
+
+```java
+public CppAdViewListener()
+```
+
+#### Methods
+
+##### onClickMenu
+
+```java
+abstract void onClickMenu(CppMainViewId id){}
+```
+
+###### Description
+
+메인화면의 특정 메뉴를 클릭했을때 이벤트 입니다.
+
+###### Parameters
+
+| 파라메터 명칭 | 내용                                                         |
+| ------------- | ------------------------------------------------------------ |
+| id      | CppMainViewId의 값중 한가지가 인자로 전달됩니다.                            |
+
+
+
+##### onCancel
+
+```java
+abstract void onCancel(){}
+```
+
+###### Description
+
+DialogFragment의 onCancel에서 호출합니다.
+
+
+##### onDismiss
+
+```java
+abstract void onDismiss(){}
+```
+
+###### Description
+
+DialogFragment의 onDismiss에서 호출합니다.
+
+---
+
+
+### CppMainViewId
+
+캐시팝팝플러스 메인화면 리스너 onClickMenu의 인자로 전달되는 값입니다.
+유저가 어떤 메뉴를 클릭했는지 이 값을 통해 알 수 있습니다.
+
+```java
+enum class CppMainViewId
+```
+
+#### Summary
+
+##### Fields
+<pre>
+UNKNOWN // 예외처리용(사용안함)
+PPI // 참여형 광고
+CPS // 구매형 광고
+FEED // 피드형 광고
+SNS // SNS형 광고
+SHOP // 상점
+EVENT_1 // 이벤트_1 (룰렛)
+EVENT_2 // 이벤트_2 (출석체크)
+LOGIN // 로그인 
+MY_MENU // 마이메뉴
+POINT // 적립내역
+</pre>
+---
 
