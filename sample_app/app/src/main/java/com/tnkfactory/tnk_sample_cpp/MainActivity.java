@@ -37,10 +37,14 @@ public class MainActivity extends AppCompatActivity {
         CppConfig config = new CppConfig.Builder()
                 .tnkLayout(TemplateLayoutUtils.getBlueTabStyle_01())
                 .listener(adViewListener)
+                .visiblePopupBtn(true)
                 .build();
 
-        CashpoppopPlus cpp = new CashpoppopPlus(MainActivity.this, config);
-        cpp.showAdView(this);
+
+        binding.btnShowCpp.setOnClickListener(v -> {
+            CashpoppopPlus cpp = new CashpoppopPlus(MainActivity.this, config);
+            cpp.showAdView(this);
+        });
 
     }
 

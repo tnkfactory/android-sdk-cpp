@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = "https://s01.oss.sonatype.org/service/local/repositories/comtnkfactory-1095/content/" }
     }
 }
 rootProject.name = "tnk_sample_cpp"
