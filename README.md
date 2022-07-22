@@ -13,6 +13,6 @@
 
 ### Update Notice
 * 2022.07.22
-  * Android SDK v1.1.0 업데이트
+  * Android SDK v1.0.9 업데이트
   
   
