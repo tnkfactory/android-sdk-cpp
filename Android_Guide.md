@@ -98,7 +98,7 @@ Proguard 를 사용하시는 경우 Proguard 설정 파일에 아래의 내용�
 <activity android:name="com.tnkfactory.ad.AdMediaActivity" android:screenOrientation="sensorLandscape"/>
 ```
 
-### Publisher ID 등록하기
+#### Publisher ID 등록하기
 
 Test Flight 에서는 별도로 계정등록을 하지않아도 간단히 테스트를 진행할 수 있었습니다. 하지만 실제 광고를 받기 위해서는 우선 Tnk Publish Site 에서 Inventory를 등록하여 발급받은 ID 를 AndroidManifest.xml 파일에 추가하셔야합니다.
 아래의 샘플을 참고하시어 실제 ID 를 등록하세요.
