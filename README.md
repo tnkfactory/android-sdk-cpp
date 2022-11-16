@@ -12,6 +12,8 @@
 [안드로이드 가이드 문서](./Android_Guide.md)
 
 ### Update Notice
+* 2022.11.16
+  * Android SDK v1.1.1 업데이트
 * 2022.07.22
   * Android SDK v1.0.9 업데이트
   
